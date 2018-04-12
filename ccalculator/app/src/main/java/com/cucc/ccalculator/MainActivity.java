@@ -14,10 +14,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<String> text = new ArrayList<>();
-    private int number;
+    private int[] number = new int[16];
     private String finalString = "";
     private int result = 0;
     private String temp = "";
+    private int[] operations = new int[15];
+    private static int i = 0, j = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,37 +134,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button5: {
                 insertInput("+");
                 createString();
-                number = Integer.parseInt(temp);
+                number[j] = Integer.parseInt(temp);
+                j++;
                 temp = "";
                 tv.setText(finalString);
+                operations[i] = 1;
+                i++;
                 break;
             }
             case R.id.button9: {
                 insertInput("-");
                 createString();
-                number = Integer.parseInt(temp);
+                number[j] = Integer.parseInt(temp);
+                j++;
                 temp = "";
+                operations[i] = 2;
+                i++;
                 tv.setText(finalString);
                 break;
             }
             case R.id.button14: {
                 insertInput("*");
                 createString();
-                number = Integer.parseInt(temp);
+                number[j] = Integer.parseInt(temp);
+                j++;
                 temp = "";
+                operations[i] = 3;
+                i++;
                 tv.setText(finalString);
                 break;
             }
             case R.id.button18: {
                 insertInput("/");
                 createString();
-                number = Integer.parseInt(temp);
+                number[j] = Integer.parseInt(temp);
+                j++;
                 temp = "";
+                operations[i] = 4;
+                i++;
                 tv.setText(finalString);
                 break;
             }
             case R.id.button19: {
                 text.clear();
+                readOperations(operations);
                 temp = "";
                 finalString = Integer.toString(result);
                 tv.setText(finalString);
@@ -194,6 +209,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(String st : text) {
             finalString = String.join("", text);
         }
+    }
+
+    private void readOperations(int[] j){
+
+        int resultSet = 0, numarator = 0;
+
+        for(int k : j){
+
+
+            switch (k){
+
+                case 1: {
+                    resultSet = j[numarator] + j[numarator+1];
+                    numarator++;
+                    break;
+                }
+                case 2: {
+                    resultSet = j[numarator] - j[numarator+1];
+                    numarator++;
+                    break;
+                }
+                case 3: {
+                    resultSet = j[numarator] * j[numarator + 1];
+                    numarator++;
+                    break;
+                }
+                case 4: {
+                    resultSet = j[numarator] + j[numarator+1];
+                    numarator++;
+                    break;
+                }
+
+            }
+
+            result = result + resultSet;
+
+            numarator++;
+
+        }
+
     }
 
 
