@@ -14,17 +14,19 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<String> text = new ArrayList<>();
-    private int number;
-    private String finalString = "";
-    private int result = 0;
+    protected List<String> items = new ArrayList<>();
     private String temp = "";
+    private Calculate c = null;
+
+    private String finalString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        c = new Calculate();
 
         Button click0 = (Button)findViewById(R.id.button17);
         Button click1 = (Button)findViewById(R.id.button11);
@@ -130,46 +132,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.button5: {
-                insertInput("+");
-                createString();
-                number = Integer.parseInt(temp);
-                temp = "";
-                tv.setText(finalString);
+                if(!temp.isEmpty()) {
+                    insertInput("+");
+                    items.add(temp);
+                    items.add("+");
+                    createString();
+                    temp = "";
+                    tv.setText(finalString);
+                }
                 break;
             }
             case R.id.button9: {
-                insertInput("-");
-                createString();
-                number = Integer.parseInt(temp);
-                temp = "";
-                tv.setText(finalString);
+                if(!temp.isEmpty()) {
+                    insertInput("-");
+                    items.add(temp);
+                    items.add("-");
+                    createString();
+                    temp = "";
+                    tv.setText(finalString);
+                }
                 break;
             }
             case R.id.button14: {
-                insertInput("*");
-                createString();
-                number = Integer.parseInt(temp);
-                temp = "";
-                tv.setText(finalString);
+                if(!temp.isEmpty()) {
+                    insertInput("*");
+                    items.add(temp);
+                    items.add("*");
+                    createString();
+                    temp = "";
+                    tv.setText(finalString);
+                }
                 break;
             }
             case R.id.button18: {
-                insertInput("/");
-                createString();
-                number = Integer.parseInt(temp);
-                temp = "";
-                tv.setText(finalString);
+                if(!temp.isEmpty()) {
+                    insertInput("/");
+                    items.add(temp);
+                    items.add("/");
+                    createString();
+                    temp = "";
+                    tv.setText(finalString);
+                }
                 break;
             }
             case R.id.button19: {
                 text.clear();
+                if(!temp.isEmpty()){
+                    items.add(temp);
+                    c.calculateArray(items);
+                }
                 temp = "";
-                finalString = Integer.toString(result);
+                finalString = Integer.toString(Calculate.getResult());
                 tv.setText(finalString);
+                finalString = "";
                 break;
             }
             case R.id.button15: {
                 finalString = "0";
+                Calculate.setResult();
+                items.clear();
                 text.clear();
                 tv.setText(finalString);
             }
@@ -195,6 +216,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finalString = String.join("", text);
         }
     }
-
 
 }
