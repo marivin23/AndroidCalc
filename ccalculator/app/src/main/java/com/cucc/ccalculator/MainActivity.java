@@ -14,20 +14,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<String> text = new ArrayList<>();
-<<<<<<< HEAD
-    private int[] number = new int[16];
-    private String finalString = "";
-    private int result = 0;
-    private String temp = "";
-    private int[] operations = new int[15];
-    private static int i = 0, j = 0;
-=======
     protected List<String> items = new ArrayList<>();
     private String temp = "";
     private Calculate c = null;
 
     private String finalString = "";
->>>>>>> 5567df81b5ee0135f4606867ab958cfad0b72522
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,49 +132,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.button5: {
-<<<<<<< HEAD
-                insertInput("+");
-                createString();
-                number[j] = Integer.parseInt(temp);
-                j++;
-                temp = "";
-                tv.setText(finalString);
-                operations[i] = 1;
-                i++;
-                break;
-            }
-            case R.id.button9: {
-                insertInput("-");
-                createString();
-                number[j] = Integer.parseInt(temp);
-                j++;
-                temp = "";
-                operations[i] = 2;
-                i++;
-                tv.setText(finalString);
-                break;
-            }
-            case R.id.button14: {
-                insertInput("*");
-                createString();
-                number[j] = Integer.parseInt(temp);
-                j++;
-                temp = "";
-                operations[i] = 3;
-                i++;
-                tv.setText(finalString);
-                break;
-            }
-            case R.id.button18: {
-                insertInput("/");
-                createString();
-                number[j] = Integer.parseInt(temp);
-                j++;
-                temp = "";
-                operations[i] = 4;
-                i++;
-                tv.setText(finalString);
-=======
                 if(!temp.isEmpty()) {
                     insertInput("+");
                     items.add(temp);
@@ -225,19 +173,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temp = "";
                     tv.setText(finalString);
                 }
->>>>>>> 5567df81b5ee0135f4606867ab958cfad0b72522
                 break;
             }
             case R.id.button19: {
                 text.clear();
-<<<<<<< HEAD
-                readOperations(operations);
-=======
                 if(!temp.isEmpty()){
                     items.add(temp);
                     c.calculateArray(items);
                 }
->>>>>>> 5567df81b5ee0135f4606867ab958cfad0b72522
                 temp = "";
                 finalString = Integer.toString(Calculate.getResult());
                 tv.setText(finalString);
@@ -250,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 items.clear();
                 text.clear();
                 tv.setText(finalString);
+                break;
             }
 
         }
@@ -274,48 +218,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-<<<<<<< HEAD
-    private void readOperations(int[] j){
-
-        int resultSet = 0, numarator = 0;
-
-        for(int k : j){
-
-
-            switch (k){
-
-                case 1: {
-                    resultSet = j[numarator] + j[numarator+1];
-                    numarator++;
-                    break;
-                }
-                case 2: {
-                    resultSet = j[numarator] - j[numarator+1];
-                    numarator++;
-                    break;
-                }
-                case 3: {
-                    resultSet = j[numarator] * j[numarator + 1];
-                    numarator++;
-                    break;
-                }
-                case 4: {
-                    resultSet = j[numarator] + j[numarator+1];
-                    numarator++;
-                    break;
-                }
-
-            }
-
-            result = result + resultSet;
-
-            numarator++;
-
-        }
-
-    }
-
-
-=======
->>>>>>> 5567df81b5ee0135f4606867ab958cfad0b72522
 }
