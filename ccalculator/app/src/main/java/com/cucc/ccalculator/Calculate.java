@@ -38,7 +38,14 @@ public class Calculate extends MainActivity {
                         break;
                     }
                     case "-": {
-                        if(items.get(iterate+2).equals("*") || items.get(iterate+2).equals("/")) break;
+                        if(items.size() - iterate == 2) {
+                            n1 = Integer.parseInt(items.get(iterate + 1));
+                            result = result - n1;
+                            break;
+                        }
+                        if (items.get(iterate + 2).equals("*") || items.get(iterate + 2).equals("/")) {
+                            break;
+                        }
                         n1 = Integer.parseInt(items.get(iterate + 1));
                         result = result - n1;
                         break;
@@ -52,6 +59,10 @@ public class Calculate extends MainActivity {
                         break;
                     }
                     case "/": {
+                        if(items.get(1).equals("*")||items.get(1).equals("/")) {
+                            result = result / Integer.parseInt(items.get(iterate+1));
+                            break;
+                        }
                         result = result + (Integer.parseInt(items.get(iterate-1)) / Integer.parseInt(items.get(iterate+1)));
                         break;
                     }
@@ -62,13 +73,13 @@ public class Calculate extends MainActivity {
         }
     }
 
-    protected static int getResult(){
-        return result;
-    }
-
-    private boolean hasIndex(int index){
+    public boolean hasIndex(int index){
         if(index < items.size()) return false;
         else return true;
+    }
+
+    protected static int getResult(){
+        return result;
     }
 
     protected static void setResult(){
